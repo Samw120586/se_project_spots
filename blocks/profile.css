@@ -18,10 +18,8 @@
 
 .profile__name {
   margin: 0 0 12px;
-  font-family: "Poppins", ;
-  font-weight: 500;
   font-size: 32px;
-  line-height: 1;
+  font-weight: 500;
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -32,6 +30,10 @@
 
 .profile__description {
   margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #212121;
+  opacity: 70%;
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -42,6 +44,18 @@
 
 .profile__edit-button {
   margin-top: auto;
+  display: flex;
+  padding-left: 0;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #212121;
+  opacity: 70%;
+  background-color: transparent;
+  border: none;
+  align-self: flex-start;
+
+
 }
 
 .profile__add-button {
@@ -49,7 +63,15 @@
   padding: auto;
   width: 157px;
   height: 52px;
-  margin-top: 138px;
+  margin-top: auto;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fcf5e5;
+  background-color: #212121;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
 }
 
 @media screen and (max-width: 627px) {
