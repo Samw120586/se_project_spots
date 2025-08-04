@@ -13,7 +13,7 @@ Tech Stack
 
 This webpage is deployed to GitHub
 
-git@github.com:Samw120586/se_project_spots.git
+https://samw120586.github.io/se_project_spots/
 
 Link to Project on Figma
 
