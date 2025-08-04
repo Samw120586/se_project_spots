@@ -61,7 +61,7 @@
 .profile__add-button {
   margin-left: auto;
   padding: auto;
-  width: 157px;
+  width: 149px;
   height: 52px;
   margin-top: auto;
   font-size: 16px;
@@ -69,9 +69,9 @@
   color: #fcf5e5;
   background-color: #212121;
   display: flex;
-  justify-content: space-around;
   align-items: center;
-
+  gap: 8px;
+  border-radius: 10px;
 }
 
 @media screen and (max-width: 627px) {
@@ -110,5 +110,6 @@
     margin-left: 0;
     max-width: 288px;
     width: 100%;
+    justify-content: center;
   }
 }
