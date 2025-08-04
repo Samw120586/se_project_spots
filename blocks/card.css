@@ -11,6 +11,15 @@
   justify-content: space-between;
 }
 
+.card__title {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .card__like-button {
   background-image: url(../images/heart.svg);
   width: 23px;
