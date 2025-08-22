@@ -15,14 +15,14 @@ const addCardFormEl = newPostModal.querySelector(".modal__form");
 const nameInput = document.querySelector("#card-caption-input");
 const linkInput = document.querySelector("#card-image-input");
 
-  editProfileButton.addEventListener("click", openModal (modal) {
+  editProfileButton.addEventListener("click", function () {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
 
   editProfileModal.classList.add("modal_is-opened");
 });
 
-editProfileCloseButton.addEventListener("click", closeModal (modal) {
+editProfileCloseButton.addEventListener("click", function () {
   editProfileModal.classList.remove("modal_is-opened");
 });
 
