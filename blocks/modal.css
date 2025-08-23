@@ -73,6 +73,11 @@
   box-sizing: border-box;
 }
 
+
+.modal__input:hover {
+  cursor: pointer;
+}
+
 .modal__label {
   margin: 0 0 32px;
   font-size: 16px;
@@ -81,7 +86,7 @@
 }
 .modal__input::placeholder {
   color: #212121;
-  opacity: 40%;
+  opacity: 30%;
 }
 
 .modal__submit-button {
@@ -98,7 +103,7 @@
 }
 
 .modal__submit-button:hover {
-  opacity: 100%;
+  opacity: 80%;
 }
 
 @media screen and (max-width: 600px) {
