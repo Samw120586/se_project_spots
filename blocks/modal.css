@@ -75,6 +75,7 @@
 
 .modal__input:hover {
   cursor: pointer;
+  border-color: #212121;
 }
 
 .modal__label {
