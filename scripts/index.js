@@ -61,7 +61,7 @@ function getCardElement(data) {
   });
 
   const cardDeleteButtonElement = cardElement.querySelector(".card__delete-button");
-  cardDeleteButtonElement.addEventListener("click", () {
+  cardDeleteButtonElement.addEventListener("click", () => {
     cardElement.remove();
     cardElement = null;
   });
