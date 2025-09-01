@@ -35,12 +35,17 @@
   cursor: pointer;
 }
 
-.card__like-button_active {
-  background-image: url(../images/);
-}
-
 .card__like-button:hover {
   opacity: 100%;
+}
+
+.card__like-button_active {
+  background-image: url(../images/like-active.svg);
+  opacity: 1;
+}
+
+.card__like-button_active:hover {
+  opacity: 0.4;
 }
 
 @media screen and (max-width: 627px) {
