@@ -42,8 +42,7 @@ const addCardFormElement = newPostModal.querySelector(".modal__form");
 const nameInput = document.querySelector("#card-caption-input");
 const linkInput = document.querySelector("#card-image-input");
 
-const cardTemplate = document.querySelector("#card-template")
-.content.querySelector(".card");
+const cardTemplate = document.querySelector("#card-template").content.querySelector(".card");
 
 const cardsList = document.querySelector(".cards__list");
 
@@ -59,7 +58,13 @@ function getCardElement(data) {
   const cardLikeButtonElement = cardElement.querySelector(".card__like-button");
   cardLikeButtonElement.addEventListener("click", () => {
     cardLikeButtonElement.classList.toggle("card__like-button_active");
-  })
+  });
+
+  const cardDeleteButtonElement = cardElement.querySelector(".card__delete-button");
+  cardDeleteButtonElement.addEventListener("click", () {
+    cardElement.remove();
+    cardElement = null;
+  });
 
   return cardElement;
 }
