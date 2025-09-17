@@ -1,12 +1,23 @@
 const showInputError = (inputElement, formElement, errorMessage) => {
   const errorMessageID = inputElement.id + "-error";
-  const errorMessageElement = document.querySelector("#", errorMessageID);
+  const errorMessageElement = formElement.querySelector("#", errorMessageID);
   errorMessageElement.textContent = errorMessage;
+  inputElement.classList.add("modal__input_type_error");
+};
+
+const hideInputError = (inputElement, formElement) => {
+  const errorMessageID = inputElement.id + "-error";
+  const errorMessageElement = formElement.querySelector("#", errorMessageID);
+  errorMessageElement.textContent = "";
+  inputElement.classList.remove(modal__input_type_error);
 };
 
 const checkInputValidity = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage);
+  }
+  else {
+    hideInputError(formElement, inputElement);
   }
 };
 

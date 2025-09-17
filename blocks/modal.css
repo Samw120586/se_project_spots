@@ -89,6 +89,10 @@
   box-sizing: border-box;
 }
 
+.modal__input_type_error {
+  border: 1px solid rgba(255, 0, 0, 0.6);
+}
+
 .modal__caption {
   display: inline;
   border-radius: 8px;
