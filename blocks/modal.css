@@ -107,6 +107,7 @@
 }
 
 .modal__label {
+  display: block;
   margin: 0 0 32px;
   font-size: 16px;
   opacity: 70%;
@@ -116,6 +117,14 @@
 .modal__input::placeholder {
   color: #212121;
   opacity: 30%;
+}
+
+.modal__error {
+  display: block;
+  color: #ff0000;
+  opacity: 70%;
+  font-size: 16px;
+  margin-top: 8px;
 }
 
 .modal__submit-button {

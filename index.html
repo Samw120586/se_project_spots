@@ -80,15 +80,23 @@
              class="modal__label">Name
               <input id="profile-name-input"
                type="text"
+               minlength="2"
+               maxlength="40"
                 class="modal__input"
-                placeholder="Type your name" required>
+                placeholder="Type your name"
+                required>
+                <span class="modal__error"></span>
             </label>
             <label for="profile-description-input"
              class="modal__label">Description
               <input id="profile-description-input"
                type="text"
+               minlength="2"
+               maxlength="200"
                 class="modal__input"
-                placeholder="Describe yourself">
+                placeholder="Describe yourself"
+                required>
+                <span class="modal__error"></span>
             </label>
             <button
             type="submit"
@@ -107,14 +115,20 @@
               <input id="card-image-input"
                type="url"
                 class="modal__input"
-                placeholder="Paste a link to the picture" required>
+                placeholder="Paste a link to the picture"
+                required>
+                <span class="modal__error"></span>
             </label>
             <label for="card-caption-input"
              class="modal__label">Caption
               <input id="card-caption-input"
                type="text"
+               minlength="2"
+               maxlength="30"
                 class="modal__input"
-                placeholder="Type your caption" required>
+                placeholder="Type your caption"
+                required>
+                <span class="modal__error"></span>
             </label>
             <button
             type="submit"
