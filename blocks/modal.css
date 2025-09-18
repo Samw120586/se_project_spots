@@ -144,6 +144,10 @@
   border: none;
 }
 
+.modal__submit-button:disabled {
+  opacity: 50%;
+}
+
 .modal__submit-button:hover {
   opacity: 80%;
 }

@@ -1,15 +1,13 @@
-const showInputError = (inputElement, formElement, errorMessage) => {
-  const errorMessageID = inputElement.id + "-error";
-  const errorMessageElement = formElement.querySelector("#", errorMessageID);
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorMessageElement = formElement.querySelector(`#${inputElement.id}-error`);
   errorMessageElement.textContent = errorMessage;
   inputElement.classList.add("modal__input_type_error");
 };
 
-const hideInputError = (inputElement, formElement) => {
-  const errorMessageID = inputElement.id + "-error";
-  const errorMessageElement = formElement.querySelector("#", errorMessageID);
+const hideInputError = (formElement, inputElement) => {
+  const errorMessageElement = formElement.querySelector(`#${inputElement.id}-error`);
   errorMessageElement.textContent = "";
-  inputElement.classList.remove(modal__input_type_error);
+  inputElement.classList.remove("modal__input_type_error");
 };
 
 const checkInputValidity = (formElement, inputElement) => {
@@ -21,9 +19,38 @@ const checkInputValidity = (formElement, inputElement) => {
   }
 };
 
+const hasInvalidInput = (inputList) => {
+  return inputList.some((input) => {
+    return !input.validity.valid;
+  });
+};
+
+const toggleButtonState = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    disableButton(buttonElement);
+  }
+  else {
+      buttonElement.disabled = false;
+      buttonElement.classList.remove("modal__submit-button");
+    }
+};
+
+const disableButton = (buttonElement) => {
+  buttonElement.disabled = true;
+  buttonElement.classList.add("modal__submit-button");
+}
+
+const resetValidation = () => {
+  inputList.forEach((input) => {
+    hideInputError(formElement, input)
+  });
+};
+
 const setEventListeners = (formElement) => {
   const inputList = Array.from(formElement.querySelectorAll(".modal__input"));
   const buttonElement = formElement.querySelectorAll(".modal__submit-button");
+
+  toggleButtonState(inputList, buttonElement);
 
 
 inputList.forEach((inputElement) => {
