@@ -107,7 +107,6 @@ editProfileButton.addEventListener("click", function () {
 });
 
 editProfileCloseButton.addEventListener("click", function () {
-
   closeModal(editProfileModal);
 });
 
