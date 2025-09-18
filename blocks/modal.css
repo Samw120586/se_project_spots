@@ -144,7 +144,7 @@
   border: none;
 }
 
-.modal__submit-button:disabled {
+.modal__button_disabled {
   opacity: 50%;
 }
 
