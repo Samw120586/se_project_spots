@@ -141,8 +141,8 @@ function handleAddCardSubmit(evt) {
 
   cardsList.prepend(cardElement);
   addCardFormElement.reset();
-  disableButton(cardSubmitButton);
-  closeModal(newPostModal);
+  disableButton(cardSubmitButton, settings);
+  closeModal(newPostModal, settings);
 };
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
