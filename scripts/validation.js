@@ -4,19 +4,19 @@ const settings = {
   submitButtonSelector: ".modal__submit-button",
   inactiveButtonClass: "modal__button_disabled",
   inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error"
+  errorClass: "modal__error_visible"
 }
 
 const showInputError = (formElement, inputElement, errorMessage, config) => {
   const errorMessageElement = formElement.querySelector(`#${inputElement.id}-error`);
   errorMessageElement.textContent = errorMessage;
-  inputElement.classList.add("modal__input_type_error");
+  inputElement.classList.add(config.errorClass);
 };
 
 const hideInputError = (formElement, inputElement, config) => {
   const errorMessageElement = formElement.querySelector(`#${inputElement.id}-error`);
   errorMessageElement.textContent = "";
-  inputElement.classList.remove("modal__input_type_error");
+  inputElement.classList.remove(config.errorClass);
 };
 
 const checkInputValidity = (formElement, inputElement, config) => {
@@ -35,21 +35,22 @@ const hasInvalidInput = (inputList, config) => {
 
 const toggleButtonState = (inputList, buttonElement, config) => {
   if (hasInvalidInput(inputList)) {
-    disableButton(buttonElement);
+    disableButton(config.inactiveButtonClass);
   } else {
       buttonElement.disabled = false;
-      buttonElement.classList.remove("modal__button_disabled");
+      buttonElement.classList.remove(config.inactiveButtonClass);
     }
 };
 
 const disableButton = (buttonElement, config) => {
   buttonElement.disabled = true;
-  buttonElement.classList.add("modal__button_disabled");
+  buttonElement.classList.add(config.inactiveButtonClass);
 };
 
 const resetValidation = (formElement, inputList, config) => {
   inputList.forEach((input) => {
     hideInputError(formElement, input, config)
+    buttonElement.classList.add(config.inactiveButtonClass);
   });
 };
 

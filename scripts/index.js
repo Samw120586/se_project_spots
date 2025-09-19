@@ -45,7 +45,7 @@ const profileNameElement = document.querySelector(".profile__name");
 const profileDescriptionElement = document.querySelector(".profile__description");
 
 const addCardFormElement = newPostModal.querySelector(".modal__form");
-const cardSubmitButton = newPostModal.querySelector(".modal__button");
+const cardSubmitButton = newPostModal.querySelector(".modal__submit-button");
 const nameInput = document.querySelector("#card-caption-input");
 const linkInput = document.querySelector("#card-image-input");
 
@@ -77,27 +77,43 @@ function getCardElement(data) {
     cardElement.remove();
   });
 
-  previewModalCloseButton.addEventListener("click", function () {
-    closeModal(previewModal);
-  });
-
   cardImageElement.addEventListener("click", () => {
   previewImageElement.src = data.link;
   previewImageElement.alt = data.name;
   previewImageCaption.textContent = data.name;
   openModal(previewModal);
-  })
+  });
 
   return cardElement;
 }
 
+ previewModalCloseButton.addEventListener("click", function () {
+    closeModal(previewModal);
+  });
+
  function openModal(modal) {
   modal.classList.add("modal_is-opened");
- }
+  document.addEventListener("keydown", handleEscapeKey);
+  modalOverlay.addEventListener("click", handleOverlayClick);
+ };
+
+ function handleEscapeKey(event) {
+  if (event.key === `Escape`) {
+    closeModal();
+  }
+ };
+
+ function handleOverlayClick(event) {
+  if (event.target === modalOverlay) {
+    closeModal();
+  }
+ };
 
  function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
- }
+  document.removeEventListener("keydown", handleEscapeKey);
+  modalOverlay.removeEventListener("click", handleOverlayClick);
+ };
 
 editProfileButton.addEventListener("click", function () {
   editProfileNameInput.value = profileNameElement.textContent;
@@ -141,7 +157,7 @@ function handleAddCardSubmit(evt) {
   cardsList.prepend(cardElement);
   addCardFormElement.reset();
   disableButton(cardSubmitButton, settings);
-  closeModal(newPostModal, settings);
+  closeModal(newPostModal);
 };
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
