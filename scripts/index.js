@@ -92,8 +92,9 @@ function getCardElement(data) {
   });
 
  function openModal(modal) {
-  modal.classList.add("modal_is-opened");
- };
+   modal.classList.add("modal_is-opened");
+
+    };
 
  function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
@@ -140,7 +141,7 @@ function handleAddCardSubmit(evt) {
 
   cardsList.prepend(cardElement);
   addCardFormElement.reset();
-  disableButton(cardSubmitButton);
+  disableButton(cardSubmitButton, settings);
   closeModal(newPostModal);
 };
 
