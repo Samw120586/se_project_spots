@@ -10,8 +10,8 @@ const settings = {
 function showInputError(formElement, inputElement, errorMessage) {
   const errorMessageElement = formElement.querySelector(`#${inputElement.id}-error`);
   errorMessageElement.textContent = errorMessage;
-  inputElement.classList.add("Modal__input_type_error");
-}
+  inputElement.classList.add("modal__input_type_error");
+};
 
 const hideInputError = (formElement, inputElement) => {
   const errorMessageElement = formElement.querySelector(`#${inputElement.id}-error`);
