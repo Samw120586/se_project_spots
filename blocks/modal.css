@@ -123,7 +123,7 @@
   opacity: 30%;
 }
 
-.modal__error_visible {
+.modal__error {
   display: block;
   color: #ff0000;
   opacity: 70%;
@@ -144,7 +144,7 @@
   border: none;
 }
 
-.modal__button_disabled {
+.modal__submit-button:disabled {
   opacity: 50%;
 }
 
