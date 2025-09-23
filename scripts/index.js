@@ -116,7 +116,7 @@ function getCardElement(data) {
 editProfileButton.addEventListener("click", function () {
   editProfileNameInput.value = profileNameElement.textContent;
   editProfileDescriptionInput.value = profileDescriptionElement.textContent;
-  resetValidation(editProfileForm, [editProfileNameInput, editProfileDescriptionInput]);
+  resetValidation(editProfileForm, [editProfileNameInput, editProfileDescriptionInput], settings);
   openModal(editProfileModal);
 });
 
@@ -138,7 +138,7 @@ function handleEditProfileSubmit(evt) {
   evt.preventDefault();
   profileNameElement.textContent = editProfileNameInput.value;
   profileDescriptionElement.textContent = editProfileDescriptionInput.value;
-  resetValidation(editProfileForm, [editProfileNameInput, editProfileDescriptionInput]);
+  resetValidation(editProfileForm, [editProfileNameInput, editProfileDescriptionInput], settings);
   closeModal(editProfileModal);
 };
 

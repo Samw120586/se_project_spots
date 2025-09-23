@@ -124,6 +124,7 @@
 }
 
 .modal__error {
+  visibility: visible;
   display: block;
   color: #ff0000;
   opacity: 70%;
