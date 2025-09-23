@@ -85,7 +85,7 @@ function getCardElement(data) {
   });
 
   return cardElement;
-}
+};
 
  previewModalCloseButton.addEventListener("click", function () {
     closeModal(previewModal);
@@ -93,6 +93,11 @@ function getCardElement(data) {
 
  function openModal(modal) {
    modal.classList.add("modal_is-opened");
+   document.addEventListener("click", function (evt) {
+    if (evt.target === modal) {
+      closeModal(modal);
+    };
+   });
    document.addEventListener("keydown", function (evt) {
     if (evt.key === `Escape`) {
       closeModal(modal);
@@ -102,6 +107,10 @@ function getCardElement(data) {
 
  function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
+  document.removeEventListener("keydown", function (evt) {
+  });
+  document.removeEventListener("click", function (evt) {
+  });
  };
 
 editProfileButton.addEventListener("click", function () {
