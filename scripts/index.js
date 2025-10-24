@@ -1,3 +1,5 @@
+import { enableValidation, validationConfig, hideInputError } from "./validation.js";
+
 const initialCards = [
 
   {
@@ -87,6 +89,12 @@ function getCardElement(data) {
   return cardElement;
 };
 
+const resetValidation = (formElement, inputList, config) => {
+  inputList.forEach((input) => {
+    hideInputError(formElement, input, config)
+  });
+};
+
  previewModalCloseButton.addEventListener("click", function () {
     closeModal(previewModal);
   });
@@ -116,7 +124,7 @@ function getCardElement(data) {
 editProfileButton.addEventListener("click", function () {
   editProfileNameInput.value = profileNameElement.textContent;
   editProfileDescriptionInput.value = profileDescriptionElement.textContent;
-  resetValidation(editProfileForm, [editProfileNameInput, editProfileDescriptionInput], settings);
+  resetValidation(editProfileForm, [editProfileNameInput, editProfileDescriptionInput], validationConfig);
   openModal(editProfileModal);
 });
 
@@ -166,3 +174,6 @@ initialCards.forEach(function (item) {
   const cardElement = getCardElement(item);
   cardsList.append(cardElement);
 });
+
+enableValidation(validationConfig);
+
