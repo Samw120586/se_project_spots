@@ -1,4 +1,5 @@
-import { enableValidation, validationConfig, hideInputError } from "./validation.js";
+import "../pages/index.css";
+import { enableValidation, validationConfig, hideInputError } from "../scripts/validation.js";
 
 const initialCards = [
 
