@@ -1,5 +1,6 @@
 import "./index.css";
 import { enableValidation, validationConfig, hideInputError } from "../scripts/validation.js";
+import Api from "../utils/Api.js";
 
 const initialCards = [
 
@@ -33,6 +34,22 @@ const initialCards = [
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
 }
 ];
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "46c74c8a-760c-42f8-a550-bb29200a256b",
+    "Content-Type": "application/json"
+  }
+});
+
+api.getInitialCards()
+  .then((initialCards) => {
+    initialCards.forEach(function (item) {
+  const cardElement = getCardElement(item);
+  cardsList.append(cardElement);
+});
+  });
 
 const editProfileButton = document.querySelector(".profile__edit-button");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -171,10 +188,7 @@ editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
 
-initialCards.forEach(function (item) {
-  const cardElement = getCardElement(item);
-  cardsList.append(cardElement);
-});
+
 
 enableValidation(validationConfig);
 
