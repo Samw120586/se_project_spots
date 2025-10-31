@@ -1,6 +1,7 @@
 import "./index.css";
 import { enableValidation, validationConfig, hideInputError } from "../scripts/validation.js";
 import Api from "../utils/Api.js";
+import { data } from "autoprefixer";
 
 
 
@@ -143,10 +144,19 @@ newPostCloseButton.addEventListener("click", function () {
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
-  profileNameElement.textContent = editProfileNameInput.value;
-  profileDescriptionElement.textContent = editProfileDescriptionInput.value;
+  api.editUserInfo({
+    name: editProfileNameInput.value,
+    about: editProfileDescriptionInput.value
+  })
+  .then((data) => {
+    profileNameElement.textContent = data.name;
+    profileDescriptionElement.textContent = data.about;
   resetValidation(editProfileForm, [editProfileNameInput, editProfileDescriptionInput], settings);
   closeModal(editProfileModal);
+   })
+  .catch((err) => {
+    console.log(err);
+  });
 };
 
 function handleAddCardSubmit(evt) {
