@@ -39,6 +39,7 @@ const editProfileCloseButton = editProfileModal.querySelector(".modal__close-but
 const editProfileForm = editProfileModal.querySelector(".modal__form");
 const editProfileNameInput = editProfileModal.querySelector("#profile-name-input");
 const editProfileDescriptionInput = editProfileModal.querySelector("#profile-description-input");
+const avatarModalButton = document.querySelector(".profile__avatar-button");
 
 const newPostButton = document.querySelector(".profile__add-button");
 const newPostModal = document.querySelector("#new-post-modal");
@@ -55,6 +56,15 @@ const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseButton = previewModal.querySelector(".modal__close-button");
 const previewImageElement = previewModal.querySelector(".modal__image");
 const previewImageCaption = previewModal.querySelector(".modal__caption");
+
+const avatarModal = document.querySelector("#avatar-modal");
+const avatarForm = avatarModal.querySelector(".modal__form");
+const avatarSubmitButton = avatarModal.querySelector(".modal__submit-button");
+const avatarCloseButton = avatarModal.querySelector(".modal__close-button");
+const avatarInput = avatarModal.querySelector("#profile-avatar-input");
+
+
+
 
 const cardTemplate = document.querySelector("#card-template").content.querySelector(".card");
 
@@ -128,7 +138,7 @@ editProfileButton.addEventListener("click", function () {
   openModal(editProfileModal);
 });
 
-editProfileCloseButton.addEventListener("click", function () {
+editProfileCloseButton.addEventListener("click", () => {
   closeModal(editProfileModal);
 });
 
@@ -141,6 +151,7 @@ newPostCloseButton.addEventListener("click", function () {
 
   closeModal(newPostModal);
 });
+
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
@@ -167,6 +178,22 @@ function handleAddCardSubmit(evt) {
     link: linkInput.value,
   };
 
+  function handleAvatarSubmit(evt) {
+    evt.preventDefault();
+    api.editAvatarInfo(avatarInput.value)
+    .then((data) => {
+      document.querySelector(".profile__avatar").src = data.avatar;
+      resetValidation(avatarForm, [avatarInput], settings);
+      closeModal(avatarModal);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  };
+
+
+
+
   const cardElement = getCardElement(inputValues);
 
   cardsList.prepend(cardElement);
@@ -175,6 +202,16 @@ function handleAddCardSubmit(evt) {
   closeModal(newPostModal);
 };
 
+avatarModalButton.addEventListener("click", () => {
+ openModal(avatarModal);
+});
+
+avatarCloseButton.addEventListener("click", () => {
+ closeModal(avatarModal);
+});
+
+avatarForm.addEventListener("submit", handleAvatarSubmit);
+
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
 addCardFormElement.addEventListener("submit", handleAddCardSubmit);
@@ -182,4 +219,3 @@ addCardFormElement.addEventListener("submit", handleAddCardSubmit);
 
 
 enableValidation(validationConfig);
-
