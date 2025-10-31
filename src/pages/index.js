@@ -12,15 +12,25 @@ const api = new Api({
   }
 });
 
-api.getInitialCards()
-  .then((initialCards) => {
-    initialCards.forEach(function (item) {
+  api.getAppInfo()
+  .then(([initialCards, userInfo]) => {
+    initialCards.forEach((item) =>{
   const cardElement = getCardElement(item);
   cardsList.append(cardElement);
-});
-}).catch((err) => {
-  console.error(err);
   });
+  profileNameElement.textContent = userInfo.name;
+  profileDescriptionElement.textContent = userInfo.about;
+})
+.catch(console.error);
+
+const settings = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__submit-button",
+  inactiveButtonClass: "modal__submit-button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible"
+};
+
 
 const editProfileButton = document.querySelector(".profile__edit-button");
 const editProfileModal = document.querySelector("#edit-profile-modal");
