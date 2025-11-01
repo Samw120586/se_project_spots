@@ -47,6 +47,7 @@ const newPostCloseButton = newPostModal.querySelector(".modal__close-button");
 const profileNameElement = document.querySelector(".profile__name");
 const profileDescriptionElement = document.querySelector(".profile__description");
 
+
 const addCardFormElement = newPostModal.querySelector(".modal__form");
 const cardSubmitButton = newPostModal.querySelector(".modal__submit-button");
 const nameInput = document.querySelector("#card-caption-input");
@@ -89,6 +90,8 @@ function getCardElement(data) {
     cardElement.remove();
   });
 
+
+
   cardImageElement.addEventListener("click", () => {
   previewImageElement.src = data.link;
   previewImageElement.alt = data.name;
@@ -98,6 +101,11 @@ function getCardElement(data) {
 
   return cardElement;
 };
+
+ const disableButton = (button, config) => {
+    button.classList.add(config.inactiveButtonClass);
+    button.disabled = true;
+  };
 
 const resetValidation = (formElement, inputList, config) => {
   inputList.forEach((input) => {
@@ -170,19 +178,20 @@ function handleEditProfileSubmit(evt) {
   });
 };
 
-function handleAddCardSubmit(evt) {
-  evt.preventDefault();
-
-  const inputValues = {
+ const inputValues = {
     name: nameInput.value,
     link: linkInput.value,
   };
 
-  function handleAvatarSubmit(evt) {
+function handleAddCardSubmit(evt) {
+  evt.preventDefault();
+};
+
+ function handleAvatarSubmit(evt) {
     evt.preventDefault();
     api.editAvatarInfo(avatarInput.value)
     .then((data) => {
-      document.querySelector(".profile__avatar").src = data.avatar;
+      avatarInput.src = data.avatar;
       resetValidation(avatarForm, [avatarInput], settings);
       closeModal(avatarModal);
     })
@@ -194,13 +203,15 @@ function handleAddCardSubmit(evt) {
 
 
 
+
+
   const cardElement = getCardElement(inputValues);
 
   cardsList.prepend(cardElement);
   addCardFormElement.reset();
   disableButton(cardSubmitButton, settings);
   closeModal(newPostModal);
-};
+
 
 avatarModalButton.addEventListener("click", () => {
  openModal(avatarModal);
