@@ -9,20 +9,10 @@ class Api {
     return Promise.all([this.getInitialCards(), this.getUserInfo()]);
   }
 
-  getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
-  headers: this._headers,
-})
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
-  });
-  }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
+      method: "GET",
       headers: this._headers,
     })
     .then(res => {
@@ -31,6 +21,19 @@ class Api {
       }
       return Promise.reject(`Error: ${res.status}`);
     });
+  }
+
+  getInitialCards() {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "GET",
+      headers: this._headers,
+})
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  });
   }
 
   editUserInfo({ name, about }) {
@@ -50,6 +53,35 @@ class Api {
     })
   };
 
+  addNewCard({ name, link }) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        link,
+      })
+      .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    })
+    })
+  };
+
+  deleteCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: "DELETE",
+      headers: this._headers,
+     }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    })
+  };
+
   editAvatarInfo(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
@@ -65,6 +97,7 @@ class Api {
     })
     })
   };
+
 
   // other methods for working with the API
 }
