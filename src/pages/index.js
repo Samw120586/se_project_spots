@@ -76,23 +76,32 @@ const cardTemplate = document.querySelector("#card-template").content.querySelec
 
 const cardsList = document.querySelector(".cards__list");
 
+  function handleLike(evt, id) {
+    const isLiked = evt.target.classList.contains("card__like-button_active");
+    api.changeLikeStatus(id, isLiked)
+    .then((id) => {
+      evt.target.classList.toggle("card__like-button_active");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardTitleElement = cardElement.querySelector(".card__title");
   const cardImageElement = cardElement.querySelector(".card__image");
-
   cardImageElement.src = data.link;
   cardImageElement.alt = data.name;
   cardTitleElement.textContent = data.name;
-
   const cardLikeButtonElement = cardElement.querySelector(".card__like-button");
-  cardLikeButtonElement.addEventListener("click", () => {
-    cardLikeButtonElement.classList.toggle("card__like-button_active");
-  });
+
+  cardLikeButtonElement.addEventListener("click", (evt) =>
+    handleLike(evt, data._id));
 
   const cardDeleteButtonElement = cardElement.querySelector(".card__delete-button");
 
-  cardDeleteButtonElement.addEventListener("click", (evt) =>
+  cardDeleteButtonElement.addEventListener("click", () =>
     handleDeleteCard(cardElement, data._id)
   );
 
@@ -134,6 +143,7 @@ const resetValidation = (formElement, inputList, config) => {
     };
    });
   };
+
 
  function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
@@ -204,6 +214,8 @@ function handleAddCardSubmit(evt) {
     });
   };
 
+
+
   function handleDeleteSubmit(evt) {
     evt.preventDefault();
     api.deleteCard(selectedCardId)
@@ -221,6 +233,7 @@ function handleAddCardSubmit(evt) {
     selectedCardId = cardId;
     openModal(deleteModal);
   };
+
 
   const cardElement = getCardElement(inputValues);
 
