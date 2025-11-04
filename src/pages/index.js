@@ -68,10 +68,6 @@ const deleteModal = document.querySelector("#delete-modal");
 const deleteForm = deleteModal.querySelector(".modal__form");
 let selectedCard, selectedCardId;
 
-
-
-
-
 const cardTemplate = document.querySelector("#card-template").content.querySelector(".card");
 
 const cardsList = document.querySelector(".cards__list");
@@ -182,6 +178,7 @@ function handleEditProfileSubmit(evt) {
     about: editProfileDescriptionInput.value
   })
   .then((data) => {
+    handleAvatarSubmit(evt);
     profileNameElement.textContent = data.name;
     profileDescriptionElement.textContent = data.about;
   resetValidation(editProfileForm, [editProfileNameInput, editProfileDescriptionInput], settings);
@@ -257,7 +254,7 @@ avatarForm.addEventListener("submit", handleAvatarSubmit);
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
-addCardFormElement.addEventListener("submit", handleAddCardSubmit);
+addCardFormElement.addEventListener("submit", handleAddCardSubmit,);
 
 deleteForm.addEventListener("submit", handleDeleteSubmit);
 
