@@ -20,7 +20,7 @@ class Api {
         return res.json();
       }
       return Promise.reject(`Error: ${res.status}`);
-    });
+    })
   }
 
   getInitialCards() {
@@ -28,6 +28,7 @@ class Api {
       method: "GET",
       headers: this._headers,
 })
+
   .then(res => {
     if (res.ok) {
       return res.json();
@@ -43,15 +44,16 @@ class Api {
       body: JSON.stringify({
         name,
         about,
-      })
+      }),
+    })
       .then((res) => {
       if (res.ok) {
         return res.json();
       }
       return Promise.reject(`Error: ${res.status}`);
     })
-    })
-  };
+    }
+
 
   addNewCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
@@ -61,12 +63,12 @@ class Api {
         name,
         link,
       })
+      })
       .then((res) => {
       if (res.ok) {
         return res.json();
       }
       return Promise.reject(`Error: ${res.status}`);
-    })
     })
   };
 
@@ -101,13 +103,14 @@ class Api {
       body: JSON.stringify({
         avatar,
       })
+    })
       .then((res) => {
       if (res.ok) {
         return res.json();
       }
       return Promise.reject(`Error: ${res.status}`);
     })
-    })
+
   };
 
   // other methods for working with the API

@@ -65,8 +65,9 @@ const avatarCloseButton = avatarModal.querySelector(".modal__close-button");
 const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 
 const deleteModal = document.querySelector("#delete-modal");
-const deleteForm = deleteModal.querySelector(".modal__form");
+const deleteForm = deleteModal.querySelector(".modal__form-delete");
 let selectedCard, selectedCardId;
+const deleteSubmitButton = deleteModal.querySelector(".modal__submit-button");
 
 const cardTemplate = document.querySelector("#card-template").content.querySelector(".card");
 
@@ -80,6 +81,7 @@ const cardsList = document.querySelector(".cards__list");
     })
     .catch(console.error);
 }
+
 
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -197,6 +199,24 @@ const inputValues = {
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
+  const submitButton = evt.submitter;
+  submitButton.textContent = "Creating...";
+  const inputValues = {
+    name: nameInput.value,
+    link: linkInput.value,
+  };
+  api.addNewCard(inputValues)
+  .then((data) => {
+    const cardElement = getCardElement(data);
+    cardsList.prepend(cardElement);
+    addCardFormElement.reset();
+    disableButton(cardSubmitButton, settings);
+    closeModal(newPostModal);
+  })
+  .catch(console.error)
+  .finally(() => {
+    submitButton.textContent = "Create";
+  });
 };
 
  function handleAvatarSubmit(evt) {
@@ -210,12 +230,10 @@ function handleAddCardSubmit(evt) {
     .catch(console.error);
   };
 
-
-
-  function handleDeleteSubmit(evt) {
+  function handleDeleteSubmit(evt, deleteSubmitButton) {
     evt.preventDefault();
-    submitButton = evt.submitter;
-    submitButton.textContent = "Deleting...";
+    deleteSubmitButton = evt.submitter;
+    deleteSubmitButton.textContent = "Deleting...";
     api.deleteCard(selectedCardId)
     .then(() => {
       selectedCard.remove();
@@ -223,7 +241,7 @@ function handleAddCardSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => {
-      submitButton.textContent = "Delete";
+      deleteSubmitButton.textContent = "Delete";
     });
   }
 
@@ -257,6 +275,7 @@ editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardSubmit,);
 
 deleteForm.addEventListener("submit", handleDeleteSubmit);
+
 
 
 

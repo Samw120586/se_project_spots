@@ -184,6 +184,7 @@
   border-radius: 8px;
   padding: 18px 32px;
   gap: 8px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 480px) {
