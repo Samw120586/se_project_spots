@@ -268,6 +268,7 @@ avatarCloseButton.addEventListener("click", () => {
  closeModal(avatarModal);
 });
 
+
 avatarForm.addEventListener("submit", handleAvatarSubmit);
 
 editProfileForm.addEventListener("submit", handleEditProfileSubmit);
@@ -275,6 +276,7 @@ editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardSubmit,);
 
 deleteForm.addEventListener("submit", handleDeleteSubmit);
+
 
 
 
