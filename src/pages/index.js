@@ -197,7 +197,7 @@ const inputValues = {
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
   const submitButton = evt.submitter;
-  submitButton.textContent = "Creating...";
+  submitButton.textContent = "Saving...";
   const inputValues = {
     name: nameInput.value,
     link: linkInput.value,
@@ -212,7 +212,7 @@ function handleAddCardSubmit(evt) {
   })
   .catch(console.error)
   .finally(() => {
-    submitButton.textContent = "Create";
+    submitButton.textContent = "Save";
   });
 };
 
