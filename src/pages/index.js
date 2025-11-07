@@ -180,9 +180,6 @@ function handleEditProfileSubmit(evt) {
     about: editProfileDescriptionInput.value
   })
   .then((data) => {
-    handleAvatarSubmit(evt);
-    profileNameElement.textContent = data.name;
-    profileDescriptionElement.textContent = data.about;
   resetValidation(editProfileForm, [editProfileNameInput, editProfileDescriptionInput], settings);
   closeModal(editProfileModal);
    })
@@ -223,6 +220,7 @@ function handleAddCardSubmit(evt) {
     evt.preventDefault();
     api.editAvatarInfo(avatarInput.value)
     .then((data) => {
+       handleAvatarSubmit(evt);
       avatarInput.src = data.avatar;
       resetValidation(avatarForm, [avatarInput], settings);
       closeModal(avatarModal);
