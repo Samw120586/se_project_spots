@@ -18,11 +18,18 @@
       </header>
       <main class="content">
         <section class="profile page__section">
+          <div class="profile__avatar-container">
+          <button class="profile__avatar-button">
+            <img src="<%=require('./images/pencil-light.svg')%>"
+        alt="pencil-light icon"
+        class="profile__pencil-icon" />
+          </button>
           <img
             src="<%=require('./images/avatar.jpg')%>"
             alt="Bessie Coleman"
             class="profile__avatar"
           />
+          </div>
           <div class="profile__column">
             <h1 class="profile__name">Bessie Coleman</h1>
             <p class="profile__description">Civil Aviator</p>
@@ -147,5 +154,46 @@
         </div>
       </div>
     </div>
+      <div class="modal" id="avatar-modal">
+    <div class="modal__container">
+          <button
+          type="button"
+          aria-label="Close-button"
+          class="modal__close-button"></button>
+          <h2 class="modal__title">Edit avatar</h2>
+          <form class="modal__form" id="edit-avatar-form">
+            <label class="modal__label" for="profile-avatar-input">
+              <input id="profile-avatar-input"
+               type="text"
+               required
+                class="modal__input"
+                name="avatar"
+                placeholder="avatar goes here">
+                <span id="profile-avatar-input-error" class="modal__error"></span>
+            </label>
+            <button
+            type="submit"
+            class="modal__submit-button">Save</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="modal" id="delete-modal">
+    <div class="modal__container">
+          <button
+          type="button"
+          aria-label="Close-button"
+          class="modal__close-button"></button>
+          <h2 class="modal__title">Are you sure you want to delete this image?</h2>
+          <form class="modal__form-delete" id="delete-form">
+            <button
+            type="submit"
+            class="modal__submit-button-delete">Delete</button>
+            <button
+            type="button"
+            class="modal__submit-button">Cancel</button>
+          </form>
+        </div>
+      </div>
   </body>
 </html>
